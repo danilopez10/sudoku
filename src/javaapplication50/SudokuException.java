@@ -11,6 +11,10 @@ package javaapplication50;
  */
 class SudokuException extends Exception {
 
+    /**
+     * Crea una excepcion pasando una cadena de texto con el mensaje
+     * @param mensaje Mensaje para devolver 
+     */
     public SudokuException(String mensaje) {
         /*
         Llamaos al constructor de la clase padre (Exception)

@@ -42,7 +42,9 @@ public class Sudoku {
         linea8=new ArrayList<>();
     }
     
-    
+    /**
+     * Metodo para iniciar el juego(inicia todas las casillas con su correspondiente número)
+     */
     public void inicializar() {
         for (int i = 0; i < 9; i++) {
             linea0.add(0);
@@ -89,6 +91,10 @@ public class Sudoku {
         linea8.set(8,8);
     }
 
+    /**
+     * Devuelve los metodos toString de cada array, para ver el sudoku al completo
+     * @return resultadoFinal 
+     */
     @Override
     public String toString() {
         String resultadoFinal = "";
@@ -96,25 +102,189 @@ public class Sudoku {
         return resultadoFinal;
     }
 
+    /**
+     * Llama a metodo puedoInsertar
+     * Comprueba que fila es, y con el metodo set modifica el elemento de dicha columna
+     * @param fila Numero de fila(array)
+     * @param columna Numero de posicion de la fila(array)
+     * @param elemento Numero a introducir
+     * @throws SudokuException  Excepcion para comunicar que no se puede introducir
+     */
     public void modificarElemento(int fila, int columna, int elemento) throws SudokuException {
-
+        if((this.puedoInsertar(fila, columna, elemento))==true)
+        {
+            if(fila==0)
+            {
+                linea0.set(columna, elemento);
+            }
+            if(fila==1)
+            {
+                linea1.set(columna, elemento);
+            }
+            if(fila==2)
+            {
+                linea2.set(columna, elemento);
+            }
+            if(fila==3)
+            {
+                linea3.set(columna, elemento);
+            }
+            if(fila==4)
+            {
+                linea4.set(columna, elemento);
+            }
+            if(fila==5)
+            {
+                linea5.set(columna, elemento);
+            }
+            if(fila==6)
+            {
+                linea6.set(columna, elemento);
+            }
+            if(fila==7)
+            {
+                linea7.set(columna, elemento);
+            }
+            if(fila==8)
+            {
+                linea8.set(columna, elemento);
+            }
+            
+            
+        }
+        else
+        {
+            throw new SudokuException("Dicho número no puede introducirse en dicha casilla");
+        }
     }
 
+    /**
+     * Comprueba que fila es y despues moficia la columna a 0
+     * @param fila Numero de fila(array)
+     * @param columna Numero de posicion de la fila(array) 
+     */
     public void vaciarElemento(int fila, int columna) {
-
+        if(fila==0)
+            {
+                linea0.set(columna, 0);
+            }
+            if(fila==1)
+            {
+                linea1.set(columna, 0);
+            }
+            if(fila==2)
+            {
+                linea2.set(columna, 0);
+            }
+            if(fila==3)
+            {
+                linea3.set(columna, 0);
+            }
+            if(fila==4)
+            {
+                linea4.set(columna, 0);
+            }
+            if(fila==5)
+            {
+                linea5.set(columna, 0);
+            }
+            if(fila==6)
+            {
+                linea6.set(columna, 0);
+            }
+            if(fila==7)
+            {
+                linea7.set(columna, 0);
+            }
+            if(fila==8)
+            {
+                linea8.set(columna, 0);
+            }
+            
     }
-
+    /**
+     * Comprueba que fila es y despues comprueba que no este dicho elemento en dicha fila
+     * Devuelce un booleano para ver si se puede o no
+     * @param fila Numero de fila(array)
+     * @param elemento Numero a introducir
+     * @return resultado
+     */
     private boolean comprobarFila(int fila, int elemento) {
         boolean resultado = true;
-        for (int i = 0; i < 9; i++) {
-            if((sudoku.get(fila).get(i))==elemento)
-            {
-               resultado=false; 
+        if (fila == 0) {
+            for (int i = 0; i < 9; i++) {
+                if (linea0.get(i) == elemento) {
+                    resultado = false;
+                }
             }
         }
+        if (fila == 1) {
+            for (int i = 0; i < 9; i++) {
+                if ((linea1.get(i)) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 2) {
+            for (int i = 0; i < 9; i++) {
+                if (linea2.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 3) {
+            for (int i = 0; i < 9; i++) {
+                if (linea3.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 4) {
+            for (int i = 0; i < 9; i++) {
+                if (linea4.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 5) {
+            for (int i = 0; i < 9; i++) {
+                if (linea5.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 6) {
+            for (int i = 0; i < 9; i++) {
+                if (linea6.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 7) {
+            for (int i = 0; i < 9; i++) {
+                if (linea7.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+        if (fila == 8) {
+            for (int i = 0; i < 9; i++) {
+                if (linea8.get(i) == elemento) {
+                    resultado = false;
+                }
+            }
+        }
+
         return resultado;
     }
-
+    
+    /**
+     * Comprueba que dicho elemento no este en ninguna columna
+     * Devuelce un booleano para ver si se puede o no
+     * @param columna Numero de posicion de la fila(array)
+     * @param elemento Numero a introducir
+     * @return resultado
+     */
     private boolean comprobarColumna(int columna, int elemento) {
         boolean resultado = true;
         if(linea1.get(columna)==elemento)
@@ -156,49 +326,214 @@ public class Sudoku {
         return resultado;
     }
 
+    /**
+     * Comprueba que ficho elemento no este en ningun cuadrante
+     * Devuelve un boleano para ver si se puede o no introducir dicho numero
+     * @param fila Numero de fila(array)
+     * @param columna Numero de posicion de la fila(array)
+     * @param elemento Numero a introducir
+     * @return resultado
+     */
     private boolean comprobarCuadrante(int fila, int columna, int elemento) {
         boolean resultado = true;
         if(fila>-1&&fila<3&&columna>-1&&columna<3)
         {
             //cuadrante 1
+            for (int i = 0; i < 3; i++) {
+                if(linea0.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea1.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea2.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<6&&fila>2&&columna<3&&columna>-1)
         {
             //cuadrante 2
+            for (int i = 0; i < 3; i++) {
+                if(linea3.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea4.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea5.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<9&&fila>5&&columna<3&&columna>-1)
         {
             //cuadrante 3
+            for (int i = 0; i < 3; i++) {
+                if(linea6.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea7.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea8.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<3&&fila>-1&&columna<6&&columna>2)
         {
             //cuadrante 4
+            for (int i = 3; i < 6; i++) {
+                if(linea0.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea1.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea2.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<6&&fila>2&&columna<6&&columna>2)
         {
             //cuadrante 5
+            for (int i = 3; i < 6; i++) {
+                if(linea3.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea4.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea5.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<9&&fila>5&&columna<6&&columna>2)
         {
             //cuadrante 6
+            for (int i = 3; i < 6; i++) {
+                if(linea6.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea7.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea8.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<3&&fila>-1&&columna<9&&columna>5)
         {
             //cuadrante 7
+            for (int i = 6; i < 9; i++) {
+                if(linea0.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea1.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea2.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<6&&fila>2&&columna<9&&columna>5)
         {
             //cuadrante 8
+            for (int i = 6; i < 9; i++) {
+                if(linea3.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea4.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea5.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         if(fila<9&&fila>5&&columna<9&&columna>5)
         {
             //cuadrante9
+            for (int i = 6; i < 9; i++) {
+                if(linea6.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea7.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+                if(linea8.get(i)==elemento)
+                {
+                    resultado=false;
+                }
+            }
         }
         return resultado;
     }
-
+    
+    /**
+     * Llama a los metodos comprobarColumna, comprobarCuadrante y comprobarFila y si los tres devuelven verdadero es que dicho numero se puede introducir
+     * Devuelve un boleano para ver si podemos introducir dicho numero
+     * @param fila Numero de fila(array)
+     * @param columna Numero de posicion de la fila(array)
+     * @param elemento Numero a introducir
+     * @return resultado
+     */
     private boolean puedoInsertar(int fila, int columna, int elemento) {
         boolean resultado = false;
+        if (this.comprobarColumna(columna, elemento) == true) {
+            resultado = true;
+
+            if (this.comprobarCuadrante(fila, columna, elemento) == true) {
+                resultado = true;
+
+                if (this.comprobarFila(fila, elemento) == true) {
+                    resultado = true;
+                }
+                else
+                {
+                    resultado=false;
+                }
+            }
+            else
+            {
+                resultado=false;
+            }
+        }
+        else
+        {
+            resultado=false;
+        }
         return resultado;
     }
 }
