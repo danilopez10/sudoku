@@ -17,20 +17,24 @@ public class JavaApplication50 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner teclado=new Scanner(System.in);
+        Scanner teclado = new Scanner(System.in);
         Sudoku juego = new Sudoku();
+        int resultado = 1;
 
-        System.out.println("1. Iniciar/Reiniciar sudoku → Iniciará o reiniciará el sudoku con el que se está\n"
-                + "jugando.\n"
-                + "2. Realizar movimiento → Pedirá las coordenadas de la casilla en la que se\n"
-                + "quiere poner un número y en el caso de que el número sea válido para esa\n"
-                + "casilla se guardará, también habrá que comprobar que en esa casilla no\n"
-                + "haya ningún número previamente.\n"
-                + "3. Vaciar casilla → Pedirá las coordenadas de la casilla de la que se quiere\n"
-                + "borrar un número ya existente.\n"
-                + "4. Mostrar sudoku → Mostrará el sudoku por la pantalla.\n"
-                + "5. Terminar → Termina la partida.");
-        
+        while (resultado != 5) {
+            System.out.println("1. Iniciar/Reiniciar sudoku (Iniciará o reiniciará el sudoku)\n"
+                    + "2. Realizar movimiento \n"
+                    + "3. Vaciar casilla\n"
+                    + "4. Mostrar sudoku\n"
+                    + "5. Terminar");
+            resultado = teclado.nextInt();
+            if (resultado == 1) {
+                juego.inicializar();
+            }
+            if (resultado == 4) {
+                System.out.println(juego.toString());
+            }
+        }
     }
 
 }
